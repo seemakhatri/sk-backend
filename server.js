@@ -9,7 +9,6 @@ const app = express();
 
 app.use(express.static(path.join(__dirname, '..', 'dist')));
 
-
 app.use(bodyParser.json());
 app.use(cors());
 
@@ -17,6 +16,11 @@ app.use(cors());
 app.use((req, res, next) => {
   res.setHeader("Permissions-Policy", "fullscreen=(self), geolocation=()");
   next();
+});
+
+// Define a simple route for the root URL
+app.get('/', (req, res) => {
+  res.send('Welcome to the backend server!');
 });
 
 app.post('/api/inquiries', (req, res) => {
@@ -29,7 +33,6 @@ app.post('/api/inquiries', (req, res) => {
           pass: process.env.GMAIL_PASS
         }
       });
-      
 
     const mailOptions = {
         from: email,
