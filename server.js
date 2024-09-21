@@ -18,10 +18,6 @@ app.use((req, res, next) => {
   next();
 });
 
-// Define a simple route for the root URL
-app.get('*', (req, res) => {
-  res.send('Welcome to the backend server!');
-});
 
 app.post('/api/inquiries', (req, res) => {
     const { name, email, message } = req.body;
@@ -51,6 +47,12 @@ app.post('/api/inquiries', (req, res) => {
         res.status(200).json({ message: 'Inquiry sent successfully' });
       });
     });
+
+    app.get('*', (req, res) => {
+      res.sendFile(path.join(__dirname, '..', 'dist', 'index.html'));
+    });
+
+    
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
