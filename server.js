@@ -19,7 +19,7 @@ app.use((req, res, next) => {
 });
 
 // Define a simple route for the root URL
-app.get('/', (req, res) => {
+app.get('*', (req, res) => {
   res.send('Welcome to the backend server!');
 });
 
